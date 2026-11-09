@@ -255,6 +255,7 @@ export async function getDashboardSummary() {
   const [
     productStats,
     orderStats,
+    cancelledOrderStats,
     chartResult,
   ] = await Promise.all([
     shopifyGraphQL<ProductStatsResponse>(
@@ -264,6 +265,11 @@ export async function getDashboardSummary() {
     shopifyGraphQL<OrderCountResponse>(
       ORDER_COUNT_QUERY,
       { filter }
+    ),
+
+    shopifyGraphQL<OrderCountResponse>(
+      ORDER_COUNT_QUERY,
+      { filter: "status:cancelled" }
     ),
 
     getOrdersPerDay(now)
@@ -302,6 +308,9 @@ export async function getDashboardSummary() {
 
     ordersLast30Days:
       orderStats.ordersCount.count,
+
+    cancelledOrders:
+      cancelledOrderStats.ordersCount.count,
 
     revenueLast30Days:
       revenueResult.revenue,

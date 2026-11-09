@@ -6,6 +6,7 @@ import {
   Package,
   ShoppingCart,
   Wallet,
+  XCircle,
 } from "lucide-react";
 
 import { Header } from "./components/layout/Header";
@@ -56,6 +57,12 @@ export default function App() {
       value: stats?.ordersLast30Days ?? "—",
       icon: ShoppingCart,
       color: "bg-blue-100 text-blue-600",
+    },
+    {
+      title: "Cancelled Orders",
+      value: stats?.cancelledOrders ?? "—",
+      icon: XCircle,
+      color: "bg-red-100 text-red-600",
     },
     
     {
@@ -115,7 +122,7 @@ export default function App() {
 
         {/* KPI CARDS */}
 
-        <section className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5">
+        <section className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6">
           {cards.map((card) => (
             <StatCard
               key={card.title}

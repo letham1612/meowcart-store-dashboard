@@ -9,6 +9,7 @@ export interface DashboardData {
   activeProducts: number;
   draftProducts: number;
   ordersLast30Days: number;
+  cancelledOrders: number;
 
   revenueLast30Days: number | null;
   currency: string | null;
